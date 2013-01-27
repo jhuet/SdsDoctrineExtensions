@@ -16,7 +16,7 @@
     "require": {
         "php": ">=5.3",
         "jhuet/sds-common": "dev-master",
-        "superdweebie/validator": "dev-master",
+        "jhuet/sds-validator": "dev-master",
         "doctrine/mongodb-odm": "dev-master"
     },
     "autoload": {
