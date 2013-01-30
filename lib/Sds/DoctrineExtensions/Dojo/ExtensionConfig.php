@@ -21,6 +21,30 @@ class ExtensionConfig extends AbstractExtensionConfig {
 
     protected $destPaths;
 
+    protected $defaultMixins = [
+        'model'                    => ['Sds/Mvc/BaseModel'],
+        'form' => [
+            'simple'               => ['Sds/Form/Form'],
+            'withValidator'        => ['Sds/Form/ValidationControlGroup'],
+        ],
+        'input' => [
+            'string'               => ['Sds/Form/TextBox'],
+            'stringWithValidator'  => ['Sds/Form/ValidationTextBox'],
+            'float'                => ['Sds/Form/TextBox'],
+            'floatWithValidator'   => ['Sds/Form/ValidationTextBox'],
+            'int'                  => ['Sds/Form/TextBox'],
+            'intWithValidator'     => ['Sds/Form/ValidationTextBox'],
+            'boolean'              => ['Sds/Form/Checkbox'],
+        ],
+        'validator' => [
+            'modelValidator'       => ['Sds/Validator/ModelValidator'],
+            'validatorGroup'       => ['Sds/Validator/ValidatorGroup']
+        ],
+        'store' => [
+            'jsonRest'             => ['Sds/Mvc/JsonRest']
+        ]
+    ];
+
     /**
      *
      * @return string
@@ -37,13 +61,22 @@ class ExtensionConfig extends AbstractExtensionConfig {
         $this->destPaths = $destPaths;
     }
 
+    public function getDefaultMixins() {
+        return $this->defaultMixins;
+    }
+
+    public function setDefaultMixins(array $defaultMixins) {
+        $this->defaultMixins = $defaultMixins;
+    }
+
     /**
      *
      * @var array
      */
     protected $dependencies = array(
-        'Sds\DoctrineExtensions\Rest' => null,
-        'Sds\DoctrineExtensions\Serializer' => null,
-        'Sds\DoctrineExtensions\Validator' => null
+        'Sds\DoctrineExtensions\Rest' => true,
+        'Sds\DoctrineExtensions\Serializer' => true,
+        'Sds\DoctrineExtensions\Validator' => true,
+        'Sds\DoctrineExtensions\Generator' => true
     );
 }

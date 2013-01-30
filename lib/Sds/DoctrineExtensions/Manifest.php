@@ -37,7 +37,12 @@ class Manifest extends AbstractExtension {
         $this->config = $config;
 
         foreach ($config->getExtensionConfigs() as $namespace => $extensionConfig){
-            $this->addExtension($namespace, $extensionConfig);
+            if ($extensionConfig != null){
+                if (is_bool($extensionConfig)){
+                    $extensionConfig = [];
+                }
+                $this->addExtension($namespace, $extensionConfig);
+            }
         }
     }
 
@@ -92,6 +97,13 @@ class Manifest extends AbstractExtension {
             //Check for manifest config, and use that instead if present
             if (isset($manifestConfigs[$namespace])){
                 $dependencyConfig = $manifestConfigs[$namespace];
+            }
+            if (is_bool($dependencyConfig)){
+                if ($dependencyConfig){
+                    $dependencyConfig = [];
+                } else {
+                    continue;
+                }
             }
             $this->addExtension($namespace, $dependencyConfig);
         }
@@ -163,6 +175,6 @@ class Manifest extends AbstractExtension {
         parent::setIdentity($identity);
         foreach ($this->extensions as $extension) {
             $extension->setIdentity($identity);
-        }        
+        }
     }
 }

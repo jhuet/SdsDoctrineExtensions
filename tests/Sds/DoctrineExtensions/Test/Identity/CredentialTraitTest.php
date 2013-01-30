@@ -14,7 +14,7 @@ class CredentialTraitTest extends BaseTest {
 
         $this->configIdentity();
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Crypt' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Crypt' => true));
 
         $this->configDoctrine(
             array_merge(

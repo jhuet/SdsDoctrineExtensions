@@ -15,7 +15,7 @@ class StampTest extends BaseTest {
 
         $this->configIdentity();
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Stamp' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Stamp' => true));
 
         $this->configDoctrine(
             array_merge(

@@ -76,9 +76,9 @@ abstract class AbstractExtensionConfig {
     /**
      *
      * @param string $namespace
-     * @param \Sds\DoctrineExtensions\AbstractExtensionConfig $config
+     * @param boolean | \Sds\DoctrineExtensions\AbstractExtensionConfig $config
      */
-    public function addDependency($namespace, AbstractExtensionConfig $config = null){
+    public function addDependency($namespace, $config = true){
         $this->dependencies[$namespace] = $config;
     }
 

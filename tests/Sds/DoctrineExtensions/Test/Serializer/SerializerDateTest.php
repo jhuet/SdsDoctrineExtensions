@@ -11,7 +11,7 @@ class SerializerDateTest extends BaseTest {
     public function setUp(){
 
         parent::setUp();
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Serializer' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Serializer' => true));
 
         $this->configDoctrine(
             array_merge(
@@ -30,7 +30,7 @@ class SerializerDateTest extends BaseTest {
         $correct = [
             'id' => null,
             'name' => 'Miriam',
-            'date' => -631155600
+            'date' => '1949-12-31T23:00:00+00:00'
         ];
 
         $array = Serializer::toArray($birthday, $this->documentManager);
@@ -45,7 +45,7 @@ class SerializerDateTest extends BaseTest {
         $correct = [
             'id' => null,
             'name' => 'Miriam',
-            'date' => -631155600
+            'date' => '1949-12-31T23:00:00+00:00'
         ];
 
         $array = Serializer::toArray($birthday, $this->documentManager);
@@ -73,7 +73,7 @@ class SerializerDateTest extends BaseTest {
         $correct = [
             'id' => $id,
             'name' => 'Miriam',
-            'date' => -631155600
+            'date' => '1949-12-31T23:00:00+00:00'
         ];
 
         $array = Serializer::ApplySerializeMetadataToArray(
@@ -89,7 +89,7 @@ class SerializerDateTest extends BaseTest {
 
         $data = array(
             'name' => 'Miriam',
-            'date' => -631155600
+            'date' => '1949-12-31T23:00:00+00:00'
         );
 
         $birthday = Serializer::fromArray(

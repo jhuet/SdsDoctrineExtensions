@@ -17,7 +17,7 @@ class SerializerReferenceTest extends BaseTest {
     public function setUp(){
 
         parent::setUp();
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Serializer' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Serializer' => true));
 
         $this->configDoctrine(
             array_merge(

@@ -15,7 +15,7 @@ class SoftDeleteTest extends BaseTest {
 
         $this->configIdentity();
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\SoftDelete' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\SoftDelete' => true));
 
         $this->configDoctrine(
             array_merge(

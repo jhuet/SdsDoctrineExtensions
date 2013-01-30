@@ -22,7 +22,7 @@ class ExtensionConfig extends AbstractExtensionConfig
      */
     protected $documentValidator;
 
-    protected $validateOnFlush = true;
+    protected $validateOnFlush = false;
 
     /**
      *

@@ -21,7 +21,7 @@ class AccessControlGuestIdentityTest extends BaseTest {
         $this->configIdentity(true);
         $this->identity->addRole(Role::guest);
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\AccessControl' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\AccessControl' => true));
 
         $this->configDoctrine(
             array_merge(
@@ -104,7 +104,7 @@ class AccessControlGuestIdentityTest extends BaseTest {
 
         $this->identity->addRole(Role::user);
         $filter->setRoles($this->identity->getRoles());
-        
+
         $documentManager->clear();
 
         $this->assertEquals(array('miriam', 'toby'), $this->getAllNames($repository));

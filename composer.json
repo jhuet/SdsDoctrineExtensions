@@ -2,6 +2,7 @@
     "name": "jhuet/sds-doctrine-extensions",
     "description": "Provides php 5.4 extension traits for Doctrine mongo",
     "type": "library",
+    "license": "MIT",
     "keywords": [
         "doctrine"
     ],
@@ -12,12 +13,13 @@
             "email": "superdweebie@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3",
         "jhuet/sds-common": "dev-master",
         "jhuet/sds-validator": "dev-master",
-        "doctrine/mongodb-odm": "dev-master"
+        "doctrine/mongodb-odm": "dev-master",
+        "zendframework/zend-json": "2.*",
+        "zendframework/zend-crypt": "2.*"
     },
     "autoload": {
         "psr-0": {

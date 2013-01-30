@@ -11,6 +11,12 @@ use Sds\DoctrineExtensions\Annotation\Annotations as Sds;
  * @Sds\Serializer(@Sds\ClassName)
  * @Sds\Validator(class = "Sds/Test/ClassValidator1"),
  * @Sds\Validator(class = "Sds/Test/ClassValidator2", options = {"option1" = "a", "option2" = "b"})
+ * @Sds\Generator({
+ *     @Sds\Dojo\Model,
+ *     @Sds\Dojo\Form,
+ *     @Sds\Dojo\ModelValidator,
+ *     @Sds\Dojo\JsonRest
+ * })
  */
 class Simple {
 
@@ -25,12 +31,14 @@ class Simple {
      * @Sds\Validator\Required,
      * @Sds\Validator(class = "Sds/Test/NameValidator1"),
      * @Sds\Validator(class = "Sds/Test/NameValidator2", options = {"option1" = "b", "option2" = "b"})
-     * @Sds\DojoInput(
-     *     params = {
-     *         "label" = "NAME",
-     *         "tooltip" = "The simple's name",
-     *         "description" = "This is a longer description"
-     *     }
+     * @Sds\Generator(
+     *     @Sds\Dojo\Input(
+     *         params = {
+     *             "label" = "NAME",
+     *             "tooltip" = "The simple's name",
+     *             "description" = "This is a longer description"
+     *         }
+     *     )
      * )
      */
     protected $name;
@@ -38,8 +46,10 @@ class Simple {
     /**
      * @ODM\String
      * @Sds\Validator(class = "Sds/Test/CountryValidator1")
-     * @Sds\DojoInput(
-     *     base = "Sds/Common/Form/ValidationTextarea"
+     * @Sds\Generator(
+     *     @Sds\Dojo\Input(
+     *         mixins = {"Sds/Common/Form/ValidationTextarea"}
+     *     )
      * )
      */
     protected $country;

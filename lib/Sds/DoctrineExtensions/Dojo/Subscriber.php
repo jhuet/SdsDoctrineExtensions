@@ -31,9 +31,13 @@ class Subscriber implements EventSubscriber, AnnotationReaderAwareInterface
      */
     public function getSubscribedEvents(){
         return array(
-            Sds\DojoModel::event,
-            Sds\DojoInput::event,
-            Sds\DojoForm::event
+            Sds\Dojo\Model::event,
+            Sds\Dojo\Input::event,
+            Sds\Dojo\Form::event,
+            Sds\Dojo\Validator::event,
+            Sds\Dojo\MultiFieldValidator::event,
+            Sds\Dojo\ModelValidator::event,
+            Sds\Dojo\JsonRest::event
         );
     }
 
@@ -54,11 +58,15 @@ class Subscriber implements EventSubscriber, AnnotationReaderAwareInterface
     public function annotationDojoModel(AnnotationEventArgs $eventArgs)
     {
         $annotation = $eventArgs->getAnnotation();
-
-        $eventArgs->getMetadata()->dojo['model'] = [
-            'base' => $annotation->base,
-            'params' => $annotation->params
-        ];
+        if ($annotation->generate){
+            $eventArgs->getMetadata()->generator[] = [
+                'class' => 'Sds\DoctrineExtensions\Dojo\Generator\Model',
+                'options' => [
+                    'mixins' => $annotation->mixins,
+                    'params' => $annotation->params
+                ]
+            ];
+        }
     }
 
     /**
@@ -68,18 +76,14 @@ class Subscriber implements EventSubscriber, AnnotationReaderAwareInterface
     public function annotationDojoForm(AnnotationEventArgs $eventArgs)
     {
         $annotation = $eventArgs->getAnnotation();
-
-        if (!isset($eventArgs->getMetadata()->dojo['form'])){
-            $eventArgs->getMetadata()->dojo['form'] = [];
-        }
-
-        if (isset($annotation->value) && $annotation->value instanceof Sds\Ignore){
-            $eventArgs->getMetadata()->dojo['form']['ignore'] = $annotation->value->value;
-        } else {
-            $eventArgs->getMetadata()->dojo['form'] = array_merge($eventArgs->getMetadata()->dojo['form'], [
-                'base' => $annotation->base,
-                'params' => $annotation->params
-            ]);
+        if ($annotation->generate){
+            $eventArgs->getMetadata()->generator[] = [
+                'class' => 'Sds\DoctrineExtensions\Dojo\Generator\Form',
+                'options' => [
+                    'mixins' => $annotation->mixins,
+                    'params' => $annotation->params
+                ]
+            ];
         }
     }
 
@@ -90,10 +94,88 @@ class Subscriber implements EventSubscriber, AnnotationReaderAwareInterface
     public function annotationDojoInput(AnnotationEventArgs $eventArgs)
     {
         $annotation = $eventArgs->getAnnotation();
+        if ($annotation->generate){
+            $eventArgs->getMetadata()->generator[] = [
+                'class' => 'Sds\DoctrineExtensions\Dojo\Generator\Input',
+                'options' => [
+                    'property' => $eventArgs->getReflection()->name,
+                    'mixins' => $annotation->mixins,
+                    'params' => $annotation->params
+                ]
+            ];
+        }
+    }
 
-        $eventArgs->getMetadata()->dojo['fields'][$eventArgs->getReflection()->getName()]['input'] = [
-            'base' => $annotation->base,
-            'params' => $annotation->params
-        ];
+    /**
+     *
+     * @param \Sds\DoctrineExtensions\Annotation\AnnotationEventArgs $eventArgs
+     */
+    public function annotationDojoValidator(AnnotationEventArgs $eventArgs)
+    {
+        $annotation = $eventArgs->getAnnotation();
+        if ($annotation->generate){
+            $eventArgs->getMetadata()->generator[] = [
+                'class' => 'Sds\DoctrineExtensions\Dojo\Generator\Validator',
+                'options' => [
+                    'property' => $eventArgs->getReflection()->name,
+                    'mixins' => $annotation->mixins,
+                    'params' => $annotation->params
+                ]
+            ];
+        }
+    }
+
+    /**
+     *
+     * @param \Sds\DoctrineExtensions\Annotation\AnnotationEventArgs $eventArgs
+     */
+    public function annotationDojoMultiFieldValidator(AnnotationEventArgs $eventArgs)
+    {
+        $annotation = $eventArgs->getAnnotation();
+        if ($annotation->generate){
+            $eventArgs->getMetadata()->generator[] = [
+                'class' => 'Sds\DoctrineExtensions\Dojo\Generator\MultiFieldValidator',
+                'options' => [
+                    'mixins' => $annotation->mixins,
+                    'params' => $annotation->params
+                ]
+            ];
+        }
+    }
+
+    /**
+     *
+     * @param \Sds\DoctrineExtensions\Annotation\AnnotationEventArgs $eventArgs
+     */
+    public function annotationDojoModelValidator(AnnotationEventArgs $eventArgs)
+    {
+        $annotation = $eventArgs->getAnnotation();
+        if ($annotation->generate){
+            $eventArgs->getMetadata()->generator[] = [
+                'class' => 'Sds\DoctrineExtensions\Dojo\Generator\ModelValidator',
+                'options' => [
+                    'mixins' => $annotation->mixins,
+                    'params' => $annotation->params
+                ]
+            ];
+        }
+    }
+
+    /**
+     *
+     * @param \Sds\DoctrineExtensions\Annotation\AnnotationEventArgs $eventArgs
+     */
+    public function annotationDojoJsonRest(AnnotationEventArgs $eventArgs)
+    {
+        $annotation = $eventArgs->getAnnotation();
+        if ($annotation->generate){
+            $eventArgs->getMetadata()->generator[] = [
+                'class' => 'Sds\DoctrineExtensions\Dojo\Generator\JsonRest',
+                'options' => [
+                    'mixins' => $annotation->mixins,
+                    'params' => $annotation->params
+                ]
+            ];
+        }
     }
 }

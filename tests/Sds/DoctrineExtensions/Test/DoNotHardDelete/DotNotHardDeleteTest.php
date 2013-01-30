@@ -14,7 +14,7 @@ class DoNotHardDeleteTest extends BaseTest {
     public function setUp(){
 
         parent::setUp();
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\DoNotHardDelete' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\DoNotHardDelete' => true));
 
         $this->configDoctrine(
             array_merge(

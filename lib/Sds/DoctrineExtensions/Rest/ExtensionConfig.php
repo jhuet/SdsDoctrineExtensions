@@ -31,6 +31,6 @@ class ExtensionConfig extends AbstractExtensionConfig {
      * @var array
      */
     protected $dependencies = array(
-        'Sds\DoctrineExtensions\Annotation' => null
+        'Sds\DoctrineExtensions\Annotation' => true
     );
 }

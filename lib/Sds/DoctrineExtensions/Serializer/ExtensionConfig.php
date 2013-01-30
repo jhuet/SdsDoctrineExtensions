@@ -20,14 +20,14 @@ class ExtensionConfig extends AbstractExtensionConfig {
 
     /** @var array */
     protected $typeSerializers = [];
-    
+
     /** @var int */
     protected $maxNestingDepth = 1;
 
     /** @var array */
     protected $dependencies = [
-        'Sds\DoctrineExtensions\Annotation' => null,
-        'Sds\DoctrineExtensions\Accessor' => null
+        'Sds\DoctrineExtensions\Annotation' => true,
+        'Sds\DoctrineExtensions\Accessor' => true
     ];
 
     /**

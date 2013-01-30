@@ -21,8 +21,8 @@ class SerializerAccessControlledReferenceTest extends BaseTest {
         $this->identity->addRole(Role::guest);
 
         $manifest = $this->getManifest([
-            'Sds\DoctrineExtensions\AccessControl' => null,
-            'Sds\DoctrineExtensions\Serializer' => null
+            'Sds\DoctrineExtensions\AccessControl' => true,
+            'Sds\DoctrineExtensions\Serializer' => true
         ]);
 
         $this->configDoctrine(

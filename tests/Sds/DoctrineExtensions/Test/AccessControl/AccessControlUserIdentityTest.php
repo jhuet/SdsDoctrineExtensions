@@ -20,7 +20,7 @@ class AccessControlUserIdentityTest extends BaseTest {
         $this->configIdentity(true);
         $this->identity->addRole(Role::user);
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\AccessControl' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\AccessControl' => true));
 
         $this->configDoctrine(
             array_merge(

@@ -10,7 +10,7 @@ class ZoneTest extends BaseTest {
     public function setUp(){
 
         parent::setUp();
-        $manifest = $this->getManifest(['Sds\DoctrineExtensions\Zone' => null]);
+        $manifest = $this->getManifest(['Sds\DoctrineExtensions\Zone' => true]);
 
         $this->configDoctrine(
             array_merge(

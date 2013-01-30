@@ -76,7 +76,7 @@ class Subscriber implements EventSubscriber, AnnotationReaderAwareInterface
                 if ($eventManager->hasListeners($annotation::event)) {
                     $eventManager->dispatchEvent(
                         $annotation::event,
-                        new AnnotationEventArgs($target, EventType::document, $annotation, $targetReflClass)
+                        new AnnotationEventArgs($target, EventType::document, $annotation, $targetReflClass, $eventManager)
                     );
                 }
             }
@@ -91,7 +91,7 @@ class Subscriber implements EventSubscriber, AnnotationReaderAwareInterface
                     if ($eventManager->hasListeners($annotation::event)) {
                         $eventManager->dispatchEvent(
                             $annotation::event,
-                            new AnnotationEventArgs($target, EventType::property, $annotation, $reflProperty)
+                            new AnnotationEventArgs($target, EventType::property, $annotation, $reflProperty, $eventManager)
                         );
                     }
                 }
@@ -108,7 +108,7 @@ class Subscriber implements EventSubscriber, AnnotationReaderAwareInterface
                     if ($eventManager->hasListeners($annotation::event)) {
                         $eventManager->dispatchEvent(
                             $annotation::event,
-                            new AnnotationEventArgs($target, EventType::method, $annotation, $reflMethod)
+                            new AnnotationEventArgs($target, EventType::method, $annotation, $reflMethod, $eventManager)
                         );
                     }
                 }

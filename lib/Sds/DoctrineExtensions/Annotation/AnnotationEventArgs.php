@@ -8,6 +8,7 @@ namespace Sds\DoctrineExtensions\Annotation;
 
 use Doctrine\Common\Annotations\Annotation;
 use Doctrine\Common\EventArgs as BaseEventArgs;
+use Doctrine\Common\EventManager;
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadataInfo;
 
 /**
@@ -26,6 +27,8 @@ class AnnotationEventArgs extends BaseEventArgs {
 
     protected $reflection;
 
+    protected $eventManager;
+
     /**
      *
      * @param \Doctrine\ODM\MongoDB\Mapping\ClassMetadataInfo $metadata
@@ -37,12 +40,14 @@ class AnnotationEventArgs extends BaseEventArgs {
         ClassMetadataInfo $metadata,
         $eventType,
         Annotation $annotation,
-        $reflection
+        $reflection,
+        EventManager $eventManager
     ) {
         $this->metadata = $metadata;
         $this->eventType = $eventType;
         $this->annotation = $annotation;
         $this->reflection = $reflection;
+        $this->eventManager = $eventManager;
     }
 
     public function getMetadata() {
@@ -60,4 +65,9 @@ class AnnotationEventArgs extends BaseEventArgs {
     public function getReflection() {
         return $this->reflection;
     }
+
+    public function getEventManager() {
+        return $this->eventManager;
+    }
+
 }

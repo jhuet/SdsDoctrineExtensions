@@ -27,7 +27,7 @@ class Extension extends AbstractExtension {
             $config->getClassNameProperty()
         ));
 
-        Serializer::addTypeSerializer('date', 'Sds\DoctrineExtensions\Serializer\Type\DateSerializer');
+        Serializer::addTypeSerializer('date', 'Sds\DoctrineExtensions\Serializer\Type\DateToISO8601');
         Serializer::setMaxNestingDepth($config->getMaxNestingDepth());
 
         foreach ($config->getTypeSerializers() as $type => $typeSerializer){

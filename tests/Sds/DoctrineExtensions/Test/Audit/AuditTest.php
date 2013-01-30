@@ -17,7 +17,7 @@ class AuditTest extends BaseTest {
 
         $this->configIdentity();
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Audit' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Audit' => true));
 
         $this->configDoctrine(
             array_merge(

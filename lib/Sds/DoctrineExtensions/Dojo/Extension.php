@@ -7,8 +7,7 @@
 namespace Sds\DoctrineExtensions\Dojo;
 
 use Sds\DoctrineExtensions\AbstractExtension;
-use Sds\DoctrineExtensions\Dojo\Console\Command\GenerateCommand;
-use Sds\DoctrineExtensions\Dojo\Console\Helper\DestPathsHelper;
+use Sds\DoctrineExtensions\Dojo\Generator;
 
 /**
  * Defines the resouces this extension provies
@@ -24,13 +23,39 @@ class Extension extends AbstractExtension {
         parent::__construct($config);
         $config = $this->getConfig();
 
-        $this->subscribers = array(new Subscriber(
-            $config->getAnnotationReader(),
-            $config->getClassNameProperty()
-        ));
-
-        $this->cliCommands = array(new GenerateCommand());
-
-        $this->cliHelpers = array('destPaths' => new DestPathsHelper($config->getDestPaths()));
+        $this->subscribers = [
+            new Subscriber(
+                $config->getAnnotationReader(),
+                $config->getClassNameProperty()
+            ),
+            new Generator\Form(
+                $config->getDestPaths(),
+                $config->getDefaultMixins()
+            ),
+            new Generator\Input(
+                $config->getDestPaths(),
+                $config->getDefaultMixins()
+            ),
+            new Generator\MultiFieldValidator(
+                $config->getDestPaths(),
+                $config->getDefaultMixins()
+            ),
+            new Generator\Validator(
+                $config->getDestPaths(),
+                $config->getDefaultMixins()
+            ),
+            new Generator\Model(
+                $config->getDestPaths(),
+                $config->getDefaultMixins()
+            ),
+            new Generator\ModelValidator(
+                $config->getDestPaths(),
+                $config->getDefaultMixins()
+            ),
+            new Generator\JsonRest(
+                $config->getDestPaths(),
+                $config->getDefaultMixins()
+            )
+        ];
     }
 }

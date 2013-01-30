@@ -13,7 +13,7 @@ class ReadonlyTest extends BaseTest {
     public function setUp(){
 
         parent::setUp();
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Readonly' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Readonly' => true));
 
         $this->configDoctrine(
             array_merge(

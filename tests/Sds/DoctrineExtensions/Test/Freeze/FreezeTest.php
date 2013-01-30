@@ -14,7 +14,7 @@ class FreezeTest extends BaseTest {
 
         $this->configIdentity();
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Freeze' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Freeze' => true));
 
         $this->configDoctrine(
             array_merge(

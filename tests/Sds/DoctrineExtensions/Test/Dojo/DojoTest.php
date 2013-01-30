@@ -2,8 +2,8 @@
 
 namespace Sds\DoctrineExtensions\Test\Dojo;
 
-use Doctrine\ODM\MongoDB\Mapping\ClassMetadataFactory;
-use Sds\DoctrineExtensions\Dojo\DojoGenerator;
+use Sds\DoctrineExtensions\Generator\Generator;
+use Sds\DoctrineExtensions\Generator\GenerateEventArgs;
 use Sds\DoctrineExtensions\Test\BaseTest;
 
 class DojoTest extends BaseTest {
@@ -17,12 +17,11 @@ class DojoTest extends BaseTest {
 
         $this->path = __DIR__ . '/../../../../Dojo';
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Dojo' => array(
-            'destPaths' => array(
-                'filter' => '',
-                'path' => $this->path
-            )
-        )));
+        $manifest = $this->getManifest(['Sds\DoctrineExtensions\Dojo' => [
+            'destPaths' => [
+                ['filter' => '', 'path' => $this->path]
+            ]
+        ]]);
 
         $this->configDoctrine(
             array_merge(
@@ -32,24 +31,23 @@ class DojoTest extends BaseTest {
             $manifest->getFilters(),
             $manifest->getSubscribers()
         );
-
-        $this->generator = new DojoGenerator();
     }
 
-    public function testDojoGenerator(){
-
-        $this->markTestIncomplete(
-          'Major refactoring of this extension in the works. For now tests are being skipped.'
-        );
+    public function testInputGenerator(){
 
         $documentManager = $this->documentManager;
-        $metadataFactory = new ClassMetadataFactory();
-        $metadataFactory->setConfiguration($documentManager->getConfiguration());
-        $metadataFactory->setDocumentManager($documentManager);
+        $eventManager = $documentManager->getEventManager();
 
-        $metadatas = $metadataFactory->getAllMetadata();
-
-        $this->generator->generate($metadatas, $this->path);
+        $messages = new \ArrayObject();
+        $eventManager->dispatchEvent(
+            Generator::event,
+            new GenerateEventArgs(
+                $documentManager->getClassMetadata('Sds\DoctrineExtensions\Test\Dojo\TestAsset\Document\Simple'),
+                $documentManager,
+                $eventManager,
+                $messages
+           )
+        );
 
         $this->assertEquals(
             file_get_contents(__DIR__ . '/TestAsset/Simple.js'),

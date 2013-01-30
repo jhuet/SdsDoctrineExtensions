@@ -15,7 +15,7 @@ class StateTest extends BaseTest {
 
         $this->configIdentity();
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\State' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\State' => true));
 
         $this->configDoctrine(
             array_merge(

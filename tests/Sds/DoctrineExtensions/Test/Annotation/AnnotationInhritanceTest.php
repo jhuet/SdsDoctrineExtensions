@@ -15,15 +15,15 @@ class AnnotationInheritaceTest extends BaseTest {
         $this->configIdentity(true);
 
         $manifest = $this->getManifest(array(
-            'Sds\DoctrineExtensions\DoNotHardDelete' => null,
+            'Sds\DoctrineExtensions\DoNotHardDelete' => true,
             'Sds\DoctrineExtensions\Dojo' => array(
                 'destPaths' => array(
                     'filter' => '',
                     'path' => __DIR__ . '/../../../../Dojo'
             )),
-            'Sds\DoctrineExtensions\Serializer' => null,
-            'Sds\DoctrineExtensions\Validator' => null,
-            'Sds\DoctrineExtensions\Workflow' => null
+            'Sds\DoctrineExtensions\Serializer' => true,
+            'Sds\DoctrineExtensions\Validator' => true,
+            'Sds\DoctrineExtensions\Workflow' => true
         ));
 
         $this->configDoctrine(

@@ -16,7 +16,7 @@ class WorkflowTest extends BaseTest {
 
         $this->configIdentity();
 
-        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Workflow' => null));
+        $manifest = $this->getManifest(array('Sds\DoctrineExtensions\Workflow' => true));
 
         $this->configDoctrine(
             array_merge(
