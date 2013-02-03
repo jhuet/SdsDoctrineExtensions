@@ -56,9 +56,9 @@ class Validator extends AbstractDojoGenerator
 
         if (count($metadata->validator['fields'][$field]) > 1){
             $templateArgs = [
-                'dependencyMids' => $this->defaultMixins['validator']['validatorGroup'],
-                'dependencies' => $this->namesFromMids($this->defaultMixins['validator']['validatorGroup']),
-                'mixins' => $this->namesFromMids($this->defaultMixins['validator']['validatorGroup']),
+                'dependencyMids' => $this->defaultMixins['validator']['group'],
+                'dependencies' => $this->namesFromMids($this->defaultMixins['validator']['group']),
+                'mixins' => $this->namesFromMids($this->defaultMixins['validator']['group']),
                 'params' => ['field' => "$field"]
             ];
 

@@ -54,9 +54,9 @@ class MultiFieldValidator extends AbstractDojoGenerator
 
         if (count($metadata->validator['document']) > 1){
             $templateArgs = [
-                'dependencyMids' => $this->defaultMixins['validator']['validatorGroup'],
-                'dependencies' => $this->namesFromMids($this->defaultMixins['validator']['validatorGroup']),
-                'mixins' => $this->namesFromMids($this->defaultMixins['validator']['validatorGroup'])
+                'dependencyMids' => $this->defaultMixins['validator']['group'],
+                'dependencies' => $this->namesFromMids($this->defaultMixins['validator']['group']),
+                'mixins' => $this->namesFromMids($this->defaultMixins['validator']['group'])
             ];
 
             foreach($metadata->validator['document'] as $validator){

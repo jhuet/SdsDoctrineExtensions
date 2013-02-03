@@ -37,8 +37,8 @@ class ExtensionConfig extends AbstractExtensionConfig {
             'boolean'              => ['Sds/Form/Checkbox'],
         ],
         'validator' => [
-            'modelValidator'       => ['Sds/Validator/ModelValidator'],
-            'validatorGroup'       => ['Sds/Validator/ValidatorGroup']
+            'model'       => ['Sds/Validator/Model'],
+            'group'       => ['Sds/Validator/Group']
         ],
         'store' => [
             'jsonRest'             => ['Sds/Mvc/JsonRest']

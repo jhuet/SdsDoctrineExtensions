@@ -53,6 +53,6 @@ class Generator implements GeneratorInterface
             }
         }
 
-        $eventArgs->getResults()[] = new GeneratorResult(['message' => 'Generate all complete']);
+        $eventArgs->getResults()[] = new GeneratorResult(['message' => PHP_EOL]);
     }
 }

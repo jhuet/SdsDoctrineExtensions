@@ -120,7 +120,7 @@ class ModelValidator extends AbstractDojoGenerator
         if (isset($options->mixins)){
             $templateArgs['dependencyMids'] = $options->mixins;
         } else {
-            $templateArgs['dependencyMids'] = $this->defaultMixins['validator']['modelValidator'];
+            $templateArgs['dependencyMids'] = $this->defaultMixins['validator']['model'];
         }
 
         $templateArgs['mixins'] = $this->namesFromMids($templateArgs['dependencyMids']);

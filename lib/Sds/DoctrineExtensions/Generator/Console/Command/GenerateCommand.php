@@ -49,10 +49,10 @@ EOT
 
             foreach ($metadatas as $metadata) {
                 $output->write(
-                    sprintf('Processing document "<info>%s</info>"', $metadata->name) . PHP_EOL
+                    sprintf('Processing document <info>%s</info>', $metadata->name) . PHP_EOL
                 );
 
-                $results = new ArrayObject();
+                $results = new \ArrayObject();
                 $eventManager->dispatchEvent(
                     Generator::event,
                     new GenerateEventArgs(

@@ -100,7 +100,7 @@ class JsonRest extends AbstractDojoGenerator
         $params['idProperty'] = $metadata->identifier;
 
         if (isset($metadata->rest)){
-            $params['target'] = $metadata->rest['basePath'] . $metadata->rest['endPoint'];
+            $params['target'] = $metadata->rest['basePath'] . $metadata->rest['endpoint'];
         } else {
             $params['target'] = $metadata->collection;
         }
