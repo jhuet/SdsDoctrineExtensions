@@ -17,7 +17,7 @@
         "php": ">=5.4",
         "superdweebie/common":               "~0.3",
         "superdweebie/validator":            "~0.3",
-        "doctrine/mongodb-odm":              "1.0.0-BETA8",
+        "doctrine/mongodb-odm":              "1.*@beta",
         "zendframework/zend-json":           "~2.2",
         "zendframework/zend-crypt":          "~2.2",
         "zendframework/zend-servicemanager": "~2.2",
